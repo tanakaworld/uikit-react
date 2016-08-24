@@ -52,6 +52,7 @@ function loadStories() {
   // require('../src/stories/Select')
   require('../src/stories/Modal')
   require('../src/stories/Input')
+  require('../src/stories/OffCanvas')
 }
 
 configure(loadStories, module)

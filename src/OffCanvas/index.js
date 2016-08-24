@@ -31,19 +31,17 @@ class OffCanvas extends Component
     )
   }
 
-  handleOverlayClick = event => event.stopPropagation()
-
   render() {
-    const { handleOpen, handleClose, handleOverlayClick } = this
+    const { handleOpen, handleClose } = this
     const target = this.props.target && createElement(this.props.target, {
       handleOpen, children: 'open',
     })
     const { children } = this.props
     const classOuter = cx('uk-offcanvas', {
-      'uk-active': this.state.isActive,
+      'uk-active': this.state.shouldDisplay && this.state.isActive,
     })
     const classInner = cx('uk-offcanvas-bar', {
-      'uk-offcanvas-bar-show': this.state.isActive,
+      'uk-offcanvas-bar-show': this.state.shouldDisplay && this.state.isActive,
     })
     return (
       <div>
@@ -52,7 +50,6 @@ class OffCanvas extends Component
         <div
           aria-hidden={this.state.isActive}
           className={classOuter}
-          onClick={handleOverlayClick}
         >
           <div className={classInner}>
             <div className="uk-panel">

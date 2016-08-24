@@ -5,11 +5,13 @@ import { Component, PropTypes, createElement } from 'react'
 class OffCanvas extends Component
 {
   static propTypes = {
+    alignment: PropTypes.string,
     children: PropTypes.node,
     target: PropTypes.node,
   }
 
   static defaultProps = {
+    alignment: '',
     target: 'button',
   }
 
@@ -27,7 +29,7 @@ class OffCanvas extends Component
   handleOpen = () => {
     this.setState(
       { shouldDisplay: true },
-      () => setTimeout(() => this.setState({ isActive: true }), 50)
+      () => setTimeout(() => this.setState({ isActive: !this.state.isActive }), 50)
     )
   }
 
@@ -36,12 +38,14 @@ class OffCanvas extends Component
     const target = this.props.target && createElement(this.props.target, {
       handleOpen, children: 'open',
     })
-    const { children } = this.props
+    const { children, alignment } = this.props
     const classOuter = cx('uk-offcanvas', {
       'uk-active': this.state.shouldDisplay && this.state.isActive,
     })
     const classInner = cx('uk-offcanvas-bar', {
       'uk-offcanvas-bar-show': this.state.shouldDisplay && this.state.isActive,
+      'uk-offcanvas-bar-flip': (this.state.shouldDisplay && this.state.isActive)
+        && alignment === 'right',
     })
     return (
       <div>

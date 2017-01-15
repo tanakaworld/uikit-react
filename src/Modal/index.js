@@ -47,8 +47,10 @@ export default class Modal extends Component {
 
   handleOpen = () => {
     setTimeout(() => {
-      this.setState({ isOpen: true })
-      this.props.onOpen();
+      this.setState({ isOpen: true });
+      if(typeof this.props.onOpen === 'function') {
+        this.props.onOpen();
+      }
     }, 0);
   }
 

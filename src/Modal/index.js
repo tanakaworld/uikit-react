@@ -19,6 +19,7 @@ export default class Modal extends Component {
     type: PropTypes.string,
     onCancel: PropTypes.func,
     onConfirm: PropTypes.func,
+    onOpen: PropTypes.func
   }
 
   static defaultProps = {
@@ -45,7 +46,10 @@ export default class Modal extends Component {
   }
 
   handleOpen = () => {
-    setTimeout(() => this.setState({ isOpen: true }), 0)
+    setTimeout(() => {
+      this.setState({ isOpen: true })
+      this.props.onOpen();
+    }, 0);
   }
 
   handleClose = (callback) => {

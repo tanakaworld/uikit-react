@@ -197,6 +197,7 @@ describe('Modal', () => {
       // eslint-disable-next-line react/prop-types,react/jsx-no-bind
       target={<button>Confirm</button>}
       type="confirm"
+      onOpen={jest.fn()}
       onCancel={jest.fn()}
       onConfirm={jest.fn()}
     >
